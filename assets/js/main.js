@@ -54,19 +54,71 @@ var scrollDirection, $ = jQuery;
 
 $(document).ready(function($){
 
+	var getAge = function(birthday) {
+	    var split = birthday.split('-'),
+	    	birthdayObj = new Date(split[0], (split[1]-1), split[2]),
+	    	now = new Date();
+
+	    var measureDays = function(now) {
+	            return 31*now.getMonth()+now.getDate();
+	        },
+	        d = new Date(birthdayObj);
+
+	    return now.getFullYear() - d.getFullYear() - (measureDays(now) < measureDays(d));
+	}
+
+	// Read configuration
+	$.get('../config.js', function(data) {
+		// Profile
+		$('#profile_name').html(data.profile.name);
+		$('#profile_age').html(getAge(data.profile.birthday) + ' Years');
+		$('#profile_phone').html(data.profile.phone);
+		$('#profile_email').html(data.profile.email);
+		$('#profile_address').html(data.profile.address);
+		// Social
+		$('.facebook-link').attr('href', data.social.facebook);
+		$('.twitter-link').attr('href', data.social.twitter);
+		$('.gplus-link').attr('href', data.social.gplus);
+		$('.linkedin-link').attr('href', data.social.linkedin);
+		$('.pinterest-link').attr('href', data.social.pinterest);
+		// Skills
+		$('.skill-count.scrum').attr('data-height', data.skills.scrum);
+		$('.skill-count.scrum').html(data.skills.scrum);
+		$('.skill-count.php').attr('data-height', data.skills.php);
+		$('.skill-count.php').html(data.skills.php);
+		$('.skill-count.javascript').attr('data-height', data.skills.javascript);
+		$('.skill-count.javascript').html(data.skills.javascript);
+		$('.skill-count.python').attr('data-height', data.skills.python);
+		$('.skill-count.python').html(data.skills.python);
+		$('.skill-count.devops').attr('data-height', data.skills.devops);
+		$('.skill-count.devops').html(data.skills.devops);
+		$('.skill-count.mysql').attr('data-height', data.skills.mysql);
+		$('.skill-count.mysql').html(data.skills.mysql);
+		$('.skill-count.mongo').attr('data-height', data.skills.mongo);
+		$('.skill-count.mongo').html(data.skills.mongo);
+		$('.skill-count.html').attr('data-height', data.skills.html);
+		$('.skill-count.html').html(data.skills.html);
+		$('.skill-count.css').attr('data-height', data.skills.css);
+		$('.skill-count.css').html(data.skills.css);
+		$('.skill-count.symfony2').attr('data-height', data.skills.symfony2);
+		$('.skill-count.symfony2').html(data.skills.symfony2);
+		$('.skill-count.symfony1').attr('data-height', data.skills.symfony1);
+		$('.skill-count.symfony1').html(data.skills.symfony1);
+	}, 'json');
+
+
 	var sklSlider = $("#skillSlider");
 
-	
-	// sklSlider.owlCarousel({
-	// 	slideSpeed: 400,
-	// 	items : 6,
-	// 	itemsDesktop : false,
-	// 	itemsDesktopSmall : [991, 8],
-	// 	itemsTablet: [768, 8],
-	// 	itemsTabletSmall: [600, 6],
-	// 	itemsMobile : [479, 4],
-	// 	pagination : false
-	// });
+	sklSlider.owlCarousel({
+	 	slideSpeed: 400,
+	 	items : 6,
+	 	itemsDesktop : false,
+	 	itemsDesktopSmall : [991, 8],
+	 	itemsTablet: [768, 8],
+	 	itemsTabletSmall: [600, 6],
+	 	itemsMobile : [479, 4],
+	 	pagination : false
+	});
 
 	sklSlider.owlCarousel({
 		slideSpeed: 400,
@@ -558,7 +610,7 @@ $(document).ready(function($){
 		map.addMarker({
 			lat : 23.79473005386213,
 			lng : 90.41430473327637,
-			icon: 'images/marker-icon.png',
+			icon: 'assets/images/marker-icon.png',
 			infoWindow: {
 				content: '<p>BD InfoSys Ltd, Dhaka, Bangladesh</p>'
 			}

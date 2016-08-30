@@ -580,7 +580,7 @@ header.nav.hide-menu {
  ----------------------------------- */
 
 #home {
-    background: url('../../images/home-bg.jpg') no-repeat fixed center center / cover;
+    background: url('../images/home-bg.jpg') no-repeat fixed center center / cover;
 }
 
 #home .sec-overlay {
@@ -715,7 +715,7 @@ header.nav.hide-menu {
  ----------------------------------- */
 
 #skill {
-    background: url('../../images/skills-bg.jpg') no-repeat scroll center center / cover;
+    background: url('../images/skills-bg.jpg') no-repeat scroll center center / cover;
 }
 
 #skill .sec-overlay {
@@ -1324,7 +1324,7 @@ header.nav.hide-menu {
  ----------------------------------- */
 
 #funfacts {
-    background: url('../../images/fun-facts-bg.jpg') no-repeat scroll center center / cover;
+    background: url('../images/fun-facts-bg.jpg') no-repeat scroll center center / cover;
 }
 
 #funfacts .sec-inner {
