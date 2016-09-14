@@ -421,14 +421,15 @@ $(document).ready(function($){
 		function getActiveSectionLength(section, sections) {
 			return sections.index(section);
 		}
-		
+
 		if ( sections.length > 0 ) {
 
 
 			sections.waypoint({
 				handler: function(event, direction) {
-					var active_section, active_section_index, prev_section_index;
-					active_section = $(this);
+					var active_section, active_section_index, prev_section_index,
+						hash = (window.location.hash)? window.location.hash : '#home';
+					active_section = $(hash);
 					active_section_index = getActiveSectionLength($(this), sections);
 					prev_section_index = ( active_section_index - 1 );
 
@@ -456,14 +457,6 @@ $(document).ready(function($){
 		}
 
 	}());
-
-
-
-
-
-
-
-
 
 
 	// Map
@@ -598,21 +591,21 @@ $(document).ready(function($){
 	if ( $mapWrapper.length > 0 ) {
 		var map = new GMaps({
 			div: '#map',
-			lat : 23.79473005386213,
-			lng : 90.41430473327637,
+			lat : -31.416667,
+			lng : -64.183333,
 			scrollwheel: false,
 			draggable: draggableOp,
-			zoom: 16,
+			zoom: 4,
 			disableDefaultUI: true,
 			styles : mapStyle
 		});
 
 		map.addMarker({
-			lat : 23.79473005386213,
-			lng : 90.41430473327637,
+			lat : -31.416667,
+			lng : -64.183333,
 			icon: 'assets/images/marker-icon.png',
 			infoWindow: {
-				content: '<p>BD InfoSys Ltd, Dhaka, Bangladesh</p>'
+				content: '<p>Emiliano Viada\'s location</p>'
 			}
 		});
 	}
@@ -790,17 +783,23 @@ $('#contactForm').on('submit', function(e){
 
 	function error(response) {
 		$this.find('input.invalid, textarea.invalid').removeClass('invalid');
+		var list = '<ul>';
 		if ( response.name ) {
 			name.removeClass('valid').addClass('invalid');
+			list += '<li>'+ response.name +'</li>';
 		}
 
 		if ( response.email ) {
 			email.removeClass('valid').addClass('invalid');
+			list += '<li>'+ response.email +'</li>';
 		}
 
 		if ( response.message ) {
 			message.removeClass('valid').addClass('invalid');
+			list += '<li>'+ response.message +'</li>';
 		}
+		list += '</ul>'
+		swal({title: "Oops...", text: "The form is invalid, see below: " + list, type: "error", html: true});
 	}
 
 	$.ajax({
