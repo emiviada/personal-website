@@ -783,23 +783,27 @@ $('#contactForm').on('submit', function(e){
 
 	function error(response) {
 		$this.find('input.invalid, textarea.invalid').removeClass('invalid');
-		var list = '<ul>';
-		if ( response.name ) {
-			name.removeClass('valid').addClass('invalid');
-			list += '<li>'+ response.name +'</li>';
-		}
+		if (response.sending) {
+			swal({title: "Oops...", text: response.sending, type: "error", html: true});
+		} else {
+			var list = '<ul>';
+			if ( response.name ) {
+				name.removeClass('valid').addClass('invalid');
+				list += '<li>'+ response.name +'</li>';
+			}
 
-		if ( response.email ) {
-			email.removeClass('valid').addClass('invalid');
-			list += '<li>'+ response.email +'</li>';
-		}
+			if ( response.email ) {
+				email.removeClass('valid').addClass('invalid');
+				list += '<li>'+ response.email +'</li>';
+			}
 
-		if ( response.message ) {
-			message.removeClass('valid').addClass('invalid');
-			list += '<li>'+ response.message +'</li>';
+			if ( response.message ) {
+				message.removeClass('valid').addClass('invalid');
+				list += '<li>'+ response.message +'</li>';
+			}
+			list += '</ul>'
+			swal({title: "Oops...", text: "The form is invalid, see below: " + list, type: "error", html: true});
 		}
-		list += '</ul>'
-		swal({title: "Oops...", text: "The form is invalid, see below: " + list, type: "error", html: true});
 	}
 
 	$.ajax({

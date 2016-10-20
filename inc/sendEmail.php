@@ -1,9 +1,15 @@
 ﻿<?php
 
+require 'vendor/autoload.php';
+use Mailgun\Mailgun;
+
 // Replace this with your own email address
 $siteOwnersEmail = 'emjovi@gmail.com';
 
 if ($_POST) {
+
+	$mailer = new Mailgun(getenv('MAILGUN_KEY'));
+	$domain = "sandbox6b83885842b74272972f9778159da9ee.mailgun.orgfdafdasfdas";
 
 	$name = trim(stripslashes($_POST['contactName']));
 	$email = trim(stripslashes($_POST['contactEmail']));
@@ -48,13 +54,24 @@ if ($_POST) {
 
 	if ( empty($error) ) {
 
-		ini_set("sendmail_from", $siteOwnersEmail); // for windows server
-		$mail = mail($siteOwnersEmail, $subject, $message, $headers);
+		try {
+			//ini_set("sendmail_from", $siteOwnersEmail); // for windows server
+			//$mail = mail($siteOwnersEmail, $subject, $message, $headers);
+			$send = $mailer->sendMessage($domain, array(
+				'from' => $email,
+	            'to' => $siteOwnersEmail,
+				'subject' => $subject,
+				'text' => $message
+			));
 
-		if ($mail) {
-			$error['OK'] = "done";
-			echo json_encode($error);
-		} else {
+			if ($send) {
+				$error['OK'] = "done";
+				echo json_encode($error);
+			} else {
+				$error['sending'] = "Something went wrong. Please try again.";
+				echo json_encode($error);
+			}
+		} catch (Exception $e) {
 			$error['sending'] = "Something went wrong. Please try again.";
 			echo json_encode($error);
 		}
