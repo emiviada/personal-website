@@ -9,7 +9,7 @@ $siteOwnersEmail = 'emjovi@gmail.com';
 if ($_POST) {
 
 	$mailer = new Mailgun(getenv('MAILGUN_KEY'));
-	$domain = "sandbox6b83885842b74272972f9778159da9ee.mailgun.orgfdafdasfdas";
+	$domain = "sandbox6b83885842b74272972f9778159da9ee.mailgun.org";
 
 	$name = trim(stripslashes($_POST['contactName']));
 	$email = trim(stripslashes($_POST['contactEmail']));
