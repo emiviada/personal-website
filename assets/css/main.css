@@ -722,21 +722,13 @@ header.nav.hide-menu {
     background: rgba(255,255,255, .92);
     height: 100%;
     width: 100%;
-    padding-top: 60px;
-    padding-bottom: 100px; 
+    padding-top: 30px;
+    padding-bottom: 80px;
 }
 
-.skill-inner {
-    margin-top: 70px;
-}
-
-.skill-left {
-    margin-top: 136px;
-}
-
-.skill-left p {
-    line-height: 30px;
-}
+.skill-inner { margin-top: 35px; }
+.skill-left { margin-top: 136px; }
+.skill-left p { line-height: 30px; }
 
 .skill-graph {
     margin-bottom: 0px;
@@ -850,7 +842,7 @@ header.nav.hide-menu {
  ----------------------------------- */
 
 .experience-wrap {
-    padding: 110px 0;
+    padding: 70px 0;
 }
 .section-head {
     margin-bottom: 65px;
@@ -1140,7 +1132,7 @@ header.nav.hide-menu {
 /* 10. Testimonials Styles
  ----------------------------------- */
 
-
+.testimonial-wrap { padding: 80px 0; }
 .testimonial-inner {}
 .testimonial-inner .card .card-image img {
     width: 100px;
@@ -1237,7 +1229,7 @@ header.nav.hide-menu {
 .contact-wrap .regular-text {
      color: #727272;
 }
-
+.contact-wrap > .sec-inner { padding: 70px 0; }
 .blog-post-thumb {
     position: relative;
 }
@@ -1892,3 +1884,4 @@ span.num {
 
 
 /* Add your CSS below */
+.h70 { height: 70px !important; }

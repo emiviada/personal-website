@@ -458,164 +458,27 @@ $(document).ready(function($){
 
 	}());
 
-
-	// Map
-	var mapStyle = [
-	    {
-	        "featureType": "landscape",
-	        "stylers": [
-	            {
-	                "saturation": -100
-	            },
-	            {
-	                "lightness": 50
-	            },
-	            {
-	                "visibility": "on"
-	            }
-	        ]
-	    },
-	    {
-	        "featureType": "poi",
-	        "stylers": [
-	            {
-	                "saturation": -100
-	            },
-	            {
-	                "lightness": 40
-	            },
-	            {
-	                "visibility": "simplified"
-	            }
-	        ]
-	    },
-	    {
-	        "featureType": "road.highway",
-	        "stylers": [
-	            {
-	                "saturation": -100
-	            },
-	            {
-	                "visibility": "simplified"
-	            }
-	        ]
-	    },
-	    {
-	        "featureType": "road.arterial",
-	        "stylers": [
-	            {
-	                "saturation": -100
-	            },
-	            {
-	                "lightness": 20
-	            },
-	            {
-	                "visibility": "on"
-	            }
-	        ]
-	    },
-	    {
-	        "featureType": "road.local",
-	        "stylers": [
-	            {
-	                "saturation": -100
-	            },
-	            {
-	                "lightness": 30
-	            },
-	            {
-	                "visibility": "on"
-	            }
-	        ]
-	    },
-	    {
-	        "featureType": "transit",
-	        "stylers": [
-	            {
-	                "saturation": -100
-	            },
-	            {
-	                "visibility": "simplified"
-	            }
-	        ]
-	    },
-	    {
-	        "featureType": "administrative.province",
-	        "stylers": [
-	            {
-	                "visibility": "off"
-	            }
-	        ]
-	    },
-	    {
-	        "featureType": "water",
-	        "elementType": "labels",
-	        "stylers": [
-	            {
-	                "visibility": "on"
-	            },
-	            {
-	                "lightness": -0
-	            },
-	            {
-	                "saturation": -0
-	            }
-	        ]
-	    },
-	    {
-	        "featureType": "water",
-	        "elementType": "geometry",
-	        "stylers": [
-	            {
-	                "hue": "#00baff"
-	            },
-	            {
-	                "lightness": -10
-	            },
-	            {
-	                "saturation": -95
-	            }
-	        ]
-	    }
-	];
-
-	var $mapWrapper = $('#map'), draggableOp;
-
-
-	if ( jQuery.browser.mobile === true ) {
-		draggableOp = false;
-	} else {
-		draggableOp = true;
-	}
-
-	if ( $mapWrapper.length > 0 ) {
-		var map = new GMaps({
-			div: '#map',
-			lat : -31.416667,
-			lng : -64.183333,
-			scrollwheel: false,
-			draggable: draggableOp,
-			zoom: 4,
-			disableDefaultUI: true,
-			styles : mapStyle
-		});
-
-		map.addMarker({
-			lat : -31.416667,
-			lng : -64.183333,
-			icon: 'assets/images/marker-icon.png',
-			infoWindow: {
-				content: '<p>Emiliano Viada\'s location</p>'
-			}
-		});
-	}
-
 }(jQuery));
 
-
+// Google Maps functionality
+var map;
+function initMap() {
+    const cba = {lat: -31.416667, lng: -64.183333};
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: cba,
+      zoom: 4
+    });
+    // Add marker
+    var marker = new google.maps.Marker({
+        position: cba,
+        map: map,
+        icon: 'assets/images/marker-icon.png',
+		title: 'Emiliano Viada\'s location'
+    });
+}
 
 $(window).load(function(){
-	
+
 	// section calling
 	$('.section-call-to-btn.call-to-home').waypoint({
 		handler: function(event, direction) {
@@ -629,7 +492,6 @@ $(window).load(function(){
 		offset: '90%'
 	});
 
-	
 	$('.section-call-to-btn.call-to-about').delay(1000).fadeIn(0, function(){
 		var $this = $(this);
 		$this.removeClass('btn-hidden');

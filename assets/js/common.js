@@ -86,9 +86,8 @@ $(window).load(function(){
 
 	// Preloader
     $('.loader').fadeOut();    
-    $('#preloader').delay(350).fadeOut('slow');
-    $('body').delay(350);
-
+    $('#preloader').delay(300).fadeOut('slow');
+    $('body').delay(300);
 
 
 	// blog post slider
@@ -122,7 +121,7 @@ $(window).load(function(){
 
 
 	// favorite maker
-	(function(){
+	/*(function(){
 		var lovedText = "You already love this", loveText = "Love this", loveClass = "active";
 		$('.js-favorite').on('click', function(e){
 			e.preventDefault();
@@ -143,8 +142,7 @@ $(window).load(function(){
 	// Blog masonry re layout
 	if ( typeof blogMsnry !== "undefined" ) {
 		blogMsnry.isotope('layout');
-	}
-
+	}*/
 });
 
 
