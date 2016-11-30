@@ -220,6 +220,8 @@ TOC :
         margin-top: 0;
     }
 
+    .funfact-box span.num { font-size: 45px; }
+
     .btn-wrapp {
         display: block;
         margin: 0 auto;
